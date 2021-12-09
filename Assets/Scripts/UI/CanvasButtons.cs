@@ -15,9 +15,31 @@ public class CanvasButtons : MonoBehaviour
         _image = GetComponent<Image>(); // получаем компонет Image и сохраняем его в переменной _image
     }
 
+    public void ShopScene()
+    {
+        StartCoroutine(LoadScene("Shop"));
+    }
+    public void ExitShopScene()
+    {
+        StartCoroutine(LoadScene("Main"));
+    }
+
     public void PlayGame()
     {
-        StartCoroutine(LoadScene("Game")); // при нажатии на кнопку, запускаем Coroutine(LoadScene)
+        if (PlayerPrefs.GetString("First Game") == "No")
+        {
+            StartCoroutine(LoadScene("Game")); // при нажатии на кнопку, запускаем Coroutine(LoadScene)
+        }
+        else
+        {
+
+            StartCoroutine(LoadScene("Study")); 
+        }
+    }
+    
+    public void RestartGames()
+    {
+        StartCoroutine(LoadScene("Game"));
     }
 
     public void SetPressButton()
