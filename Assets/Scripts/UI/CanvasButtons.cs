@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+
 public class CanvasButtons : MonoBehaviour
 {
     [SerializeField] private Sprite _btn, _btnPressed; // поля для спрайтов 
