@@ -7,8 +7,8 @@ using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
-    public Text nowScore, topScore, coinsCount;
-
+    [SerializeField] public Text nowScore, topScore, coinsCount;
+    [SerializeField] public GameObject[] maps;
     [SerializeField] private float _timetToSpawnFrom = 2f, _timeToSpawnTo = 4.5f;
     [SerializeField] private GameObject[] _carsPrefab;
     [SerializeField] private bool _isMainScene;
@@ -20,6 +20,26 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        // выбор карты отображение в игре
+        if (PlayerPrefs.GetInt("NowMap") == 2)
+        {
+            Destroy(maps[0]); // уничтожаем ненужыне карты 
+            maps[1].SetActive(true); // отображаем нужную карту
+            Destroy(maps[2]);
+        }
+        else if (PlayerPrefs.GetInt("NowMap") == 3)
+        {
+            Destroy(maps[0]);
+            Destroy(maps[1]);
+            maps[3].SetActive(true);
+        }
+        else
+        {
+            maps[0].SetActive(true);
+            Destroy(maps[1]);
+            Destroy(maps[2]);
+        }
+
         CarController.isLose = false; // скрываем canvas проигрыша
         CarController._countCars = 0; // обнуляем текуший счёт
 

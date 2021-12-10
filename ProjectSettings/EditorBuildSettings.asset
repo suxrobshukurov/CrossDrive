@@ -8,13 +8,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 254112c80fd2a044faa7653858c13d36
-  - enabled: 1
-    path: Assets/Scenes/Study.unity
-    guid: 6f9d703cadb9e874abcb13222d8d8bf6
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Shop.unity
-    guid: 447b251c56b56ff48ab68a5a524bf9ad
+    guid: 95d0446233e9592478e0a65f3d16a738
+  - enabled: 1
+    path: Assets/Scenes/Study.unity
+    guid: e2d6ed5890ac2c9459d1aadda0f46f32
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: dddb96bc07ed50e4ea1cb2ed1c316189
   m_configObjects: {}
