@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class BuyMapCoins : MonoBehaviour
 {
+    // поля для аудио дорожек
+    [SerializeField] private AudioClip _success, _fail;
     // поля для кнопок в магазине 
     [SerializeField] public GameObject _coins1000, _coins5000, _money0_99, _money1_99, _city_btn, _megapolis_btn;
     // поле для анимации
@@ -16,10 +18,17 @@ public class BuyMapCoins : MonoBehaviour
     //метод для покупки карт
     public void BuyNewMap(int needCoins)
     {
+
+
         int coins = PlayerPrefs.GetInt("Coins");
         if (coins < needCoins)
         {
             _cointsText.Play(); // пригривание анимации если нет денег
+            if (PlayerPrefs.GetString("music") != "No") // если не выключин звук
+            {
+                GetComponent<AudioSource>().clip = _fail; // устанавливаем нужную дорожку
+                GetComponent<AudioSource>().Play(); // мы запуксаем звуковой эффект
+            }
         }
         else
         {
@@ -47,6 +56,12 @@ public class BuyMapCoins : MonoBehaviour
             int nowCoins = coins - needCoins; // в новой переменой храним остаток суммы
             _coinsCount.text = nowCoins.ToString(); // передаем статус в указаное поле
             PlayerPrefs.SetInt("Coins", nowCoins);
+
+            if (PlayerPrefs.GetString("music") != "No") // если не выключин звук
+            {
+                GetComponent<AudioSource>().clip = _success; // устанавливаем нужную дорожку
+                GetComponent<AudioSource>().Play(); // мы запуксаем звуковой эффект
+            }
         }
     }
 }

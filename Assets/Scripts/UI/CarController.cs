@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private GameObject _turnLeftSignal, _turnRightSignal, _explosion, _exhaust;
+    [SerializeField] private AudioClip[] _accelerates;
+    [SerializeField] private AudioClip _crash;
 
     private Rigidbody carRb;
     private Camera _mainCam;
@@ -21,6 +23,7 @@ public class CarController : MonoBehaviour
     [NonSerialized] public static bool isLose;
 
     public float _speed = 15f, _carForce = 50f; // указываем скорость машины и силу удара
+    
 
     private void Start()
     {
@@ -62,6 +65,13 @@ public class CarController : MonoBehaviour
                 Destroy(vfx, 2f);
                 _speed *= 2f; // увеличиваем скорость
                 _isMovingFast = true; //меняем переключятель 
+
+                if (PlayerPrefs.GetString("music") != "No")
+                {
+                    //пригрываем рандомный звук из массива
+                    GetComponent<AudioSource>().clip = _accelerates[Random.Range(0, _accelerates.Length)];
+                    GetComponent<AudioSource>().Play();
+                }
             }
         }
     }
@@ -86,7 +96,15 @@ public class CarController : MonoBehaviour
             if (_isMovingFast)
                 _carForce *= 1.2f;
 
+            // добовляем силу относительно кооринаты машины 
             carRb.AddRelativeForce(Vector3.back * _carForce);
+
+            //пригрываем звук столькновения
+            if (PlayerPrefs.GetString("music") != "No")
+            {
+                GetComponent<AudioSource>().clip = _crash;
+                GetComponent<AudioSource>().Play();
+            }
 
         }
     }

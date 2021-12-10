@@ -573,6 +573,11 @@ MonoBehaviour:
   _turnRightSignal: {fileID: 6312606916916176889}
   _explosion: {fileID: 191186, guid: 040ac209e33b83b4fa9efc38676dab9e, type: 3}
   _exhaust: {fileID: 1998766811820298, guid: c8422e3276120874b8cc162cc13af4ad, type: 3}
+  _accelerates:
+  - {fileID: 8300000, guid: ccabcf75f80554a9f97717e854fd6fc3, type: 3}
+  - {fileID: 8300000, guid: 22e6b3f1cc09746b8a53b46d0aecd23a, type: 3}
+  - {fileID: 8300000, guid: 636428b01be37492e8a38e130e10a790, type: 3}
+  _crash: {fileID: 8300000, guid: ec0ac798469c94dd28b55b8093ca85f8, type: 3}
   _rightTurn: 0
   _leftTurn: 0
   _speed: 12

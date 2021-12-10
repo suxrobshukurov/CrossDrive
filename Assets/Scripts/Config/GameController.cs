@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -12,11 +11,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private float _timetToSpawnFrom = 2f, _timeToSpawnTo = 4.5f;
     [SerializeField] private GameObject[] _carsPrefab;
     [SerializeField] private bool _isMainScene;
-    [SerializeField] private GameObject _canvasLosePanel;
+    [SerializeField] private GameObject _canvasLosePanel, _horn;
+    [SerializeField] private AudioSource _turnSignal;
 
     private int _countCars;
     private Coroutine _bottomCars, _leftCars, _rightCars, _upCars;
     private bool _isLoseOnce;
+
+
 
     private void Start()
     {
@@ -52,6 +54,8 @@ public class GameController : MonoBehaviour
         _leftCars = StartCoroutine(LeftCars());
         _rightCars = StartCoroutine(RightCars());
         _upCars = StartCoroutine(UpCars());
+
+        StartCoroutine(CreateHorn());
         
     }
     private void Update()
@@ -119,6 +123,23 @@ public class GameController : MonoBehaviour
             yield return new WaitForSeconds(_timetToSpawn);
         }
     }
+    IEnumerator CreateHorn()
+    {   
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(4, 9));
+            if (PlayerPrefs.GetString("music") != "No")
+            {
+                Instantiate(_horn, Vector3.zero, Quaternion.identity);
+            }
+        }
+    }
+
+    //  метод для выключения звука
+    private void StopSound()
+    {
+        _turnSignal.Stop();
+    }
 
     private void SpawnCar(Vector3 pos, float rotationY)
     {
@@ -135,13 +156,22 @@ public class GameController : MonoBehaviour
         {
             case 1:
             case 2:
-                // Move right
-                newCar.GetComponent<CarController>()._rightTurn = true;
+                newCar.GetComponent<CarController>()._rightTurn = true;  // Move right
+                if (PlayerPrefs.GetString("music") != "No" && !_turnSignal.isPlaying)
+                {
+                    _turnSignal.Play(); // Turn signal
+                    Invoke("StopSound", 3.5f); // turn of
+                }
                 break;
             case 3:
             case 4:
-                newCar.GetComponent<CarController>()._leftTurn = true;
-                // Move left
+                newCar.GetComponent<CarController>()._leftTurn = true; // Move left
+                if (PlayerPrefs.GetString("music") != "No" && !_turnSignal.isPlaying)
+                {
+                    _turnSignal.Play(); // Turn signal
+                    Invoke("StopSound", 3.5f); // turn of
+                }
+
                 break;
             default:
                 // Move forward
@@ -149,6 +179,4 @@ public class GameController : MonoBehaviour
         }
        
     }
-
-
 }
