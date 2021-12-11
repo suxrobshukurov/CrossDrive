@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1356463502488050342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1356463502488050340}
+  - component: {fileID: 1356463502488050343}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1356463502488050340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356463502488050342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1356463502488050343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356463502488050342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e43e581e43532841b35916251dee8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nowScore: {fileID: 0}
+  topScore: {fileID: 0}
+  coinsCount: {fileID: 0}
+  maps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _timetToSpawnFrom: 2
+  _timeToSpawnTo: 4.5
+  _carsPrefab:
+  - {fileID: 8258839534010148435, guid: 733204288fcac7a489ab3f886da90747, type: 3}
+  - {fileID: 71860516446862107, guid: 34d5169823094da44bd35084ef8626e8, type: 3}
+  _isMainScene: 0
+  _canvasLosePanel: {fileID: 0}
+  _horn: {fileID: 7417259074574998823, guid: ef53330407458d8499f794bb29bb82cb, type: 3}
+  _adsManager: {fileID: 2170500897574715680, guid: f0bb84d3e74185c49ad96aacf055ab41, type: 3}
+  _turnSignal: {fileID: 0}
