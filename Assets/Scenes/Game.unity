@@ -909,6 +909,7 @@ MonoBehaviour:
   _isMainScene: 0
   _canvasLosePanel: {fileID: 1223225995}
   _horn: {fileID: 7417259074574998823, guid: ef53330407458d8499f794bb29bb82cb, type: 3}
+  _adsManager: {fileID: 2170500897574715680, guid: f0bb84d3e74185c49ad96aacf055ab41, type: 3}
   _turnSignal: {fileID: 1894201447}
 --- !u!4 &256554810
 Transform:

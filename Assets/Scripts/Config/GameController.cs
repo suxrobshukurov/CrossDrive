@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,17 +12,27 @@ public class GameController : MonoBehaviour
     [SerializeField] private float _timetToSpawnFrom = 2f, _timeToSpawnTo = 4.5f;
     [SerializeField] private GameObject[] _carsPrefab;
     [SerializeField] private bool _isMainScene;
-    [SerializeField] private GameObject _canvasLosePanel, _horn;
+    [SerializeField] private GameObject _canvasLosePanel, _horn, _adsManager;
     [SerializeField] private AudioSource _turnSignal;
 
     private int _countCars;
     private Coroutine _bottomCars, _leftCars, _rightCars, _upCars;
     private bool _isLoseOnce;
 
+    [NonSerialized] public static int countLoses; // количество проигрыша игрока 
+    [NonSerialized] private static bool _isAdd;
+
+
 
 
     private void Start()
     {
+        if (!_isAdd) // загружаем рекламу только один раз на сцену
+        {
+            Instantiate(_adsManager, Vector3.zero, Quaternion.identity);
+            _isAdd = true;
+        }
+
         // выбор карты отображение в игре
         if (PlayerPrefs.GetInt("NowMap") == 2)
         {
@@ -62,6 +73,7 @@ public class GameController : MonoBehaviour
     {
         if (CarController.isLose && !_isLoseOnce)    // при проигрыше игрока
         {
+            countLoses++; // подсчитываем проигрыш игрока
             StopCoroutine(_bottomCars);
             StopCoroutine(_leftCars);
             StopCoroutine(_rightCars);
