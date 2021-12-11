@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        if (!_isAdd) // загружаем рекламу только один раз на сцену
+        if (!_isAdd && PlayerPrefs.GetString("NoAds") != "yes") // загружаем рекламу только один раз на сцену
         {
             Instantiate(_adsManager, Vector3.zero, Quaternion.identity);
             _isAdd = true;
@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(maps[0]);
             Destroy(maps[1]);
-            maps[3].SetActive(true);
+            maps[2].SetActive(true);
         }
         else
         {
